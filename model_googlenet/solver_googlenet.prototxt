@@ -1,0 +1,15 @@
+net: "model_googlenet/train_googlenet.prototxt"
+test_iter: 37
+test_interval: 216
+display: 140
+average_loss: 40
+base_lr: 0.0001
+lr_policy: "step"
+stepsize: 1000
+gamma: 0.5
+max_iter: 10000000
+momentum: 0.9
+weight_decay: 0.0002
+snapshot: 10000
+#snapshot_prefix: "/home/tianru/caffe/examples/mycaffe/"
+solver_mode: GPU

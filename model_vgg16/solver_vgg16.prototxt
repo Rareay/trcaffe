@@ -1,0 +1,12 @@
+net: "examples/mycaffe/train_vgg16.prototxt"
+test_iter: 74
+test_interval:140
+base_lr: 0.001
+lr_policy: "step"
+gamma: 0.1
+stepsize: 1000
+display: 140
+max_iter: 200000
+momentum: 0.9
+weight_decay: 0.0005
+solver_mode: GPU
