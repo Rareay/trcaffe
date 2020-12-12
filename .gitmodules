@@ -1,0 +1,9 @@
+[submodule "caffe-int8-convert-tools"]
+	path = caffe-int8-convert-tools
+	url = https://github.com/Tamray/caffe-int8-convert-tools.git
+[submodule "ncnn"]
+	path = ncnn
+	url = https://github.com/Tamray/ncnn.git
+[submodule "caffe"]
+	path = caffe
+	url = https://github.com/Tamray/caffe.git
