@@ -11,13 +11,10 @@ layer {
         mirror: false
         crop_size: 224
         mean_file: "mean.binaryproto"
-        #mean_value: 104
-        #mean_value: 117
-        #mean_value: 123
     }
     data_param {
         source: "img_train_lmdb"
-        batch_size: 8
+        batch_size: 12
         backend: LMDB
     }
 }
@@ -39,7 +36,7 @@ layer {
     }
     data_param {
         source: "img_test_lmdb"
-        batch_size: 1
+        batch_size: 4
         backend: LMDB
     }
 }
@@ -2614,7 +2611,7 @@ layer {
         decay_mult: 1
     }
     inner_product_param {
-        num_output: 5
+        num_output: 10
         weight_filler {
             type: "xavier"
         }
@@ -2655,17 +2652,17 @@ layer {
     }
 }
 
-layer {
-    bottom: "fc1000"
-    bottom: "label"
-    top: "acc/top-5"
-    name: "acc/top-5"
-    type: "Accuracy"
-    include {
-        phase: TEST
-    }
-    accuracy_param {
-        top_k: 5
-    }
-}
+#layer {
+#    bottom: "fc1000"
+#    bottom: "label"
+#    top: "acc/top-5"
+#    name: "acc/top-5"
+#    type: "Accuracy"
+#    include {
+#        phase: TEST
+#    }
+#    accuracy_param {
+#        top_k: 5
+#    }
+#}
 

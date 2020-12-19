@@ -2,10 +2,10 @@
 TOOL=caffe/build/tools/caffe
 
 ## solver_xx.prototxt
-SOLVER_PROTO=model_resnet_imagenet/resnet_50/resnet_50_solver.prototxt
+SOLVER_PROTO=model_resnet/solver.prototxt
 
 ## 权重  .caffemodel
-CAFFEMODEL=model_resnet_imagenet/resnet_50/resnet_50_solver_iter_60000_home.caffemodel
+CAFFEMODEL=model_resnet/ResNet-50-model.caffemodel
 
 ${TOOL} train \
     -solver ${SOLVER_PROTO} \

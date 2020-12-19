@@ -2,8 +2,7 @@
 TOOL=caffe/build/tools/caffe
 
 ## solver_xx.prototxt
-#SOLVER_PROTO=model_resnet_imagenet/resnet_50/resnet_50_solver.prototxt
-SOLVER_PROTO=model_test/solver_test.prototxt
+SOLVER_PROTO=model_resnet/solver.prototxt
 
 ${TOOL} train \
     -solver  ${SOLVER_PROTO}\

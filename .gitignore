@@ -1,6 +1,9 @@
 img_test_lmdb/
 img_train_lmdb/
 **/build
+int8_mode/images
+int8_mode/mode
+
 .vscode/
 
 *.jpg
