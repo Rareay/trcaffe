@@ -1,0 +1,163 @@
+name: "MOBILENET_V2"
+layer {
+    name: "data"
+    type: "Data"
+    top: "data"
+    top: "label"
+    include {
+        phase: TRAIN
+    }
+    transform_param {
+        mirror: true
+        crop_size: 32
+        mean_file: "mean.binaryproto"
+    }
+    data_param {
+        source: "img_train_lmdb"
+        batch_size: 64
+        backend: LMDB
+    }
+}
+layer {
+    name: "data"
+    type: "Data"
+    top: "data"
+    top: "label"
+    include {
+        phase: TEST
+    }
+    transform_param {
+        mirror: false
+        crop_size: 32
+        mean_file: "mean.binaryproto"
+    }
+    data_param {
+        source: "img_test_lmdb"
+        batch_size: 12
+        backend: LMDB
+    }
+}
+layer {
+  name: "conv1"
+  type: "Convolution"
+  bottom: "data"
+  top: "conv1"
+  param {
+    lr_mult: 1.0
+    decay_mult: 1.0
+  }
+  convolution_param {
+    num_output: 32
+    bias_term: true
+    pad: 1
+    kernel_size: 3
+    stride: 2
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "conv1"
+  top: "conv1"
+}
+layer {
+  name: "conv2_1_expand"
+  type: "Convolution"
+  bottom: "conv1"
+  top: "conv2_1_expand"
+  convolution_param {
+    num_output: 64
+    bias_term: true
+    pad: 1
+    kernel_size: 3
+    stride: 2
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+layer {
+  name: "relu2_1_expand"
+  type: "ReLU"
+  bottom: "conv2_1_expand"
+  top: "conv2_1_expand"
+}
+layer {
+  name: "pool6"
+  type: "Pooling"
+  bottom: "conv2_1_expand"
+  top: "pool6"
+  pooling_param {
+    pool: AVE
+    global_pooling: true
+  }
+}
+layer {
+  name: "fc7"
+  type: "Convolution"
+  bottom: "pool6"
+  top: "fc7"
+  param {
+    lr_mult: 1.0
+    decay_mult: 1.0
+  }
+  param {
+    lr_mult: 2.0
+    decay_mult: 0.0
+  }
+  convolution_param {
+    num_output: 3
+    kernel_size: 1
+    weight_filler {
+      type: "msra"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0.0
+    }
+  }
+}
+# layer {
+#   name: "prob"
+#   type: "Softmax"
+#   bottom: "fc7"
+#   top: "prob"
+#   include {
+#       phase: TRAIN
+#   }
+# }
+
+layer {
+    bottom: "fc7"
+    bottom: "label"
+    name: "loss"
+    type: "SoftmaxWithLoss"
+    top: "loss"
+    include {
+        phase: TRAIN
+    }
+}
+
+layer {
+    bottom: "fc7"
+    bottom: "label"
+    top: "acc/top-1"
+    name: "acc/top-1"
+    type: "Accuracy"
+    include {
+        phase: TEST
+    }
+}
+
+

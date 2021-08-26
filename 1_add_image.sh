@@ -1,7 +1,7 @@
 TOOL=./cpp_pretreamtment/build/pretreamtment
 
 ## 原图像路径（使用相对路径）
-ORI_IMAGE_PATH=./data/raw-img/train
+ORI_IMAGE_PATH=./data/tlc/train
 
 ## 扩充图的路径
 NEW_IMAGE_PATH=${ORI_IMAGE_PATH}/new

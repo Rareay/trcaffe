@@ -5,11 +5,11 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #endif  // USE_OPENCV
-#include <algorithm>
-#include <iosfwd>
-#include <memory>
-#include <string>
-#include <utility>
+//#include <algorithm>
+//#include <iosfwd>
+//#include <memory>
+//#include <string>
+//#include <utility>
 #include <vector>
 #include <boost/filesystem.hpp>
 #include <boost/function.hpp>

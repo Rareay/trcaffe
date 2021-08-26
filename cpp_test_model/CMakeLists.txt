@@ -26,14 +26,13 @@ include_directories(${Caffe_INCLUDE_DIR})
 find_library(Caffe_LIBS caffe ${Caffe_LIBRARY_DIR})
 
 
-# Cuda
+## Cuda
 set(Cuda_INCLUDE_DIR /usr/local/cuda/include)
 set(Cuda_LIBRARY_DIR /usr/local/cuda/lib64) 
 include_directories(${Cuda_INCLUDE_DIR})
 
 # Glog
 set(GLOG_LIB glog)
-
 
 add_executable(use_model classification.cpp)
 target_link_libraries(use_model 

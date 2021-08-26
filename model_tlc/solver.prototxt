@@ -1,0 +1,16 @@
+net: "model_tlc/quan_train.prototxt"
+test_iter: 10
+test_interval: 50
+test_initialization: false
+display: 120
+average_loss: 40
+base_lr: 0.00001
+lr_policy: "step"
+stepsize: 1000
+gamma: 0.5
+max_iter: 3000
+momentum: 0.9
+weight_decay: 0.0001
+snapshot: 1000
+#snapshot_prefix: "/home/tianru/caffe/examples/mycaffe/"
+solver_mode: GPU

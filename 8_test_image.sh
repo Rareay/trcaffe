@@ -1,10 +1,11 @@
-TOOL=./cpp_test_model/build/use_model
+#TOOL=./cpp_test_model/build/use_model
+TOOL=./caffe/build/examples/cpp_classification/classification.bin
 
 ## deploy_xx.prototxt
-DEPLOY_PROTO=model_resnet_imagenet/resnet_50/resnet_50_deploy.prototxt
+DEPLOY_PROTO=model_tlc/tlc.prototxt
 
 ## 权重  .caffemodel
-CAFFEMODEL=model_resnet_imagenet/resnet_50/resnet_50_solver_iter_60000_home.caffemodel
+CAFFEMODEL=model_tlc/tlc.caffemodel
 
 ## 均值  .binaryproto
 MODEL_MEAN=mean.binaryproto
@@ -13,21 +14,21 @@ MODEL_MEAN=mean.binaryproto
 LABEL=labels/labels.txt
 
 ## 文件或目录
-IMAGE=caffe/data/raw-img/test/elefante
+IMAGE=data/tlc/train/0
 
 if [ ! -f ${LABEL} ]; then
     touch ${LABEL}
 fi
 
-if [ ! -e ${TOOL} ]; then
-    cd cpp_test_model
-    rm build -rf
-    mkdir build
-    cd build
-    cmake ..
-    make
-    cd ../..
-fi
+#if [ ! -e ${TOOL} ]; then
+#    cd cpp_test_model
+#    rm build -rf
+#    mkdir build
+#    cd build
+#    cmake ..
+#    make
+#    cd ../..
+#fi
 
 ${TOOL} \
     ${DEPLOY_PROTO} \
@@ -35,3 +36,4 @@ ${TOOL} \
     ${MODEL_MEAN} \
     ${LABEL} \
     ${IMAGE}
+
